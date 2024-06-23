@@ -63,7 +63,7 @@ const config = {
 		refNumber: "Referencia",
 		date: "Fecha",
 		dueDate: "Fecha de vencimiento",
-		status: "Estado",
+		status: "επί πληρωμή",
 		billTo: "Facturar a",
 		item: "Artículo",
 		quantity: "Cantidad",
@@ -72,6 +72,20 @@ const config = {
 		total: "Total",
 		subTotal: "Subtotal",
 		totalTax: "Total Impuesto",
+	},
+	style: {
+		font: "Noto", // "Helvetica", "Times", "Courier"
+		fontSize: 10,
+		lineHeight: 1.2,
+		color: "#000000",
+	},
+	font: {
+		Noto: {
+			normal: path.join(__dirname, "fonts/noto/regular.ttf"),
+			italics: path.join(__dirname, "fonts/noto/italic.ttf"),
+			bold: path.join(__dirname, "fonts/noto/bold.ttf"),
+			bolditalics: path.join(__dirname, "fonts/noto/bold-italic.ttf"),
+		},
 	},
 };
 
