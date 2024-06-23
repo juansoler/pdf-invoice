@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const invoiceMaker = require("pdfmake");
-const helper = require("../utils/helper");
-const defaultConfig = require("../utils/config");
+const helper = require("@/utils/helper");
+const defaultConfig = require("@/utils/config");
 
 import type {
 	CompanyInfo,
@@ -12,11 +12,10 @@ import type {
 	QRInfo,
 	Notes,
 	InvoicePayLoad,
-	SimplePDFInvoice,
 	Configuration,
 } from "../../global";
 
-export class PDFInvoice implements SimplePDFInvoice {
+export class PDFInvoice {
 	payload: InvoicePayLoad;
 	company: CompanyInfo;
 	invoice: InvoiceInfo;
@@ -28,13 +27,12 @@ export class PDFInvoice implements SimplePDFInvoice {
 	note: Notes;
 	date: string;
 	config: Configuration;
-	constructor(
-		payload: InvoicePayLoad,
-		config: Configuration = defaultConfig
-	) {
+	constructor(payload: InvoicePayLoad, config: Configuration = defaultConfig) {
 		this.payload = payload;
 
-		// Invoice content section.
+		/**
+		 * Content section.
+		 */
 		this.company = payload.company;
 		this.customer = payload.customer;
 		this.invoice = payload.invoice;
@@ -42,20 +40,28 @@ export class PDFInvoice implements SimplePDFInvoice {
 		this.qr = payload.qr;
 		this.note = payload.note;
 
-		// Invoice currency.
+		/**
+		 * Currency.
+		 */
 		this.currency = this.invoice.currency || "$";
 
-		// Path.
+		/**
+		 * Invoice path.
+		 */
 		this.path = path.resolve(this.invoice.path) || "./invoice.pdf";
 
-		// Invoice information.
+		/**
+		 * Invoice date.
+		 */
 		this.date = new Date().toLocaleDateString("en-US", {
 			year: "numeric",
 			month: "numeric",
 			day: "numeric",
 		});
 
-		// Configuration.
+		/**
+		 * Configuration.
+		 */
 		this.config = config;
 	}
 
@@ -72,10 +78,10 @@ export class PDFInvoice implements SimplePDFInvoice {
 			pageSize: "A4",
 			orientation: "portrait",
 			pageMargins: [40, 40, 40, 40],
-			info: this.meta(),
+			info: this.docMeta(),
 			content: this.content(),
-			defaultStyle: this.defaultStyle(),
-			styles: this.styles(),
+			defaultStyle: this.docStyle(),
+			styles: this.docTypo(),
 		};
 
 		return new Promise((resolve, reject) => {
@@ -84,44 +90,58 @@ export class PDFInvoice implements SimplePDFInvoice {
 
 			doc.pipe(stream);
 
-			doc.on("end", () => {
-				resolve(this.path);
-			});
+			doc.on("end", () => resolve(this.path));
 
-			doc.on("error", (err: any) => {
-				reject(err);
-			});
+			doc.on("error", (err: any) => reject(err));
 
 			doc.end();
 		});
 	}
 
 	/**
-	 * Fonts.
+	 * Collection of available fonts.
 	 *
-	 * @returns {Object} font.
+	 * @returns {Record<string, Record<string, string>>} font.
 	 * @since 1.0.0
 	 */
-	fonts(): any {
-		const fonts = {
+	fonts(): Record<string, Record<string, string>> {
+		const font = {
 			Helvetica: {
 				normal: "Helvetica",
 				bold: "Helvetica-Bold",
 				italics: "Helvetica-Oblique",
 				bolditalics: "Helvetica-BoldOblique",
 			},
+			Times: {
+				normal: "Times-Roman",
+				bold: "Times-Bold",
+				italics: "Times-Italic",
+				bolditalics: "Times-BoldItalic",
+			},
+			Courier: {
+				normal: "Courier",
+				bold: "Courier-Bold",
+				italics: "Courier-Oblique",
+				bolditalics: "Courier-BoldOblique",
+			},
 		};
 
-		return fonts;
+		const additionalFonts = this.config?.font || null;
+
+		if (additionalFonts && Object.keys(additionalFonts).length > 0) {
+			Object.assign(font, additionalFonts);
+		}
+
+		return font;
 	}
 
 	/**
 	 * Doc meta.
 	 *
-	 * @returns {Object} meta.
+	 * @returns {Record<string, string | undefined>}
 	 * @since 1.0.0
 	 */
-	meta(): any {
+	docMeta(): Record<string, string | undefined> {
 		const meta = {
 			title: "Invoice - #" + this.invoice.number,
 			author: this.company.name,
@@ -135,29 +155,36 @@ export class PDFInvoice implements SimplePDFInvoice {
 	/**
 	 * Default invoice styles.
 	 *
-	 * @returns {Object} defaults.
+	 * @returns {Record<string, any>}
 	 * @since 1.0.0
 	 */
-	defaultStyle(): any {
-		const defaults = {
-			fontSize: 10,
+	docStyle(): Record<string, any> {
+		let defaults = {
+			font: "Helvetica",
+			fontSize: this.config?.style?.fontSize || 10,
 			lineHeight: 1.8,
 			bold: false,
-			font: "Helvetica",
-			color: "#222222",
+			color: "#000000",
 			columnGap: 30,
 		};
+
+		const style = this.config.style || null;
+
+		if (style && Object.keys(style).length > 0) {
+			defaults = { ...defaults, ...style };
+		}
+
 		return defaults;
 	}
 
 	/**
-	 * Invoice styles.
+	 * Invoice typography styles.
 	 *
 	 * @returns {Object} defaults.
 	 * @since 1.0.0
 	 */
-	styles(): any {
-		const styles = {
+	docTypo(): Record<string, Record<string, unknown>> {
+		return {
 			h1: {
 				fontSize: 18,
 				bold: true,
@@ -171,15 +198,14 @@ export class PDFInvoice implements SimplePDFInvoice {
 				bold: true,
 			},
 			text: {
-				fontSize: 10,
+				fontSize: this.config?.style?.fontSize || 10,
 				bold: false,
 			},
 			textBold: {
-				fontSize: 10,
+				fontSize: this.config?.style?.fontSize || 10,
 				bold: true,
 			},
 		};
-		return styles;
 	}
 
 	/**
@@ -440,21 +466,15 @@ export class PDFInvoice implements SimplePDFInvoice {
 						body: [
 							[
 								`\n ${this.config.string.subTotal}`,
-								`\n ${this.currency}${helper.calcSubTotal(
-									this.items
-								)}`,
+								`\n ${this.currency}${helper.calcSubTotal(this.items)}`,
 							],
 							[
 								`\n ${this.config.string.totalTax}`,
-								`\n ${this.currency}${helper.calcTax(
-									this.items
-								)}`,
+								`\n ${this.currency}${helper.calcTax(this.items)}`,
 							],
 							[
 								`\n ${this.config.string.total}`,
-								`\n ${this.currency}${helper.calcFinalTotal(
-									this.items
-								)}`,
+								`\n ${this.currency}${helper.calcFinalTotal(this.items)}`,
 							],
 						],
 					},

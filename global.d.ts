@@ -1,3 +1,6 @@
+/**
+ * Invoice payload types.
+ */
 export interface CompanyInfo {
 	logo?: string;
 	name?: string;
@@ -50,16 +53,37 @@ export interface InvoicePayLoad {
 	note: Notes;
 }
 
-export interface SimplePDFInvoice {
-	create(): Promise<string>;
-	fonts(): any;
-	meta(): any;
-	content(): any;
-	defaultStyle(): any;
-	styles(): any;
+/**
+ * Invoice configuration types.
+ */
+export interface ConfigMeta {
+	title?: string;
+	author?: string;
+	subject?: string;
+	keywords?: string;
+}
+
+export interface ConfigBaseStyle {
+	font?: string;
+	fontSize?: number;
+	lineHeight?: number;
+	color?: string;
+	bold?: boolean;
+}
+
+export interface ConfigFont {
+	[key: string]: {
+		normal: string;
+		bold: string;
+		italics: string;
+		bolditalics: string;
+	};
 }
 
 export interface Configuration {
+	font: ConfigFont;
+	meta: ConfigMeta;
+	style: ConfigBaseStyle;
 	string: {
 		invoice?: string;
 		refNumber?: string;
@@ -75,18 +99,4 @@ export interface Configuration {
 		subTotal?: string;
 		totalTax?: string;
 	};
-	font: [
-		helvetica?: {
-			normal?: string;
-			bold?: string;
-			italics?: string;
-			bolditalics?: string;
-		},
-		noto?: {
-			normal?: string;
-			bold?: string;
-			italics?: string;
-			bolditalics?: string;
-		}
-	];
 }
