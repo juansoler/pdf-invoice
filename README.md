@@ -272,6 +272,10 @@ Once you call the `create` method, it will return a promise. You can either use 
 
 If required you can change the configuration of the invoice. It is an object with the following structure:
 
+### Strings
+
+All the text strings that are used in the invoice can be customized. For example:
+
 ```js
 const { PDFInvoice } = require('@h1dd3nsn1p3r/pdf-invoice');
 
@@ -308,15 +312,57 @@ const create = async(): Promise<void> => {
 }
 ```
 
-### Config limitations: 
+### Fonts
 
 For now only `latin` characters are supported. It seems like a limitation of `Helvetica` font. I'll be adding support for other languages soon.
+
+Following are the fonts that are available build-in with the library:
+
+- Helvetica
+- Times 
+- Courier
+
+All these three fonts includes regular, bold, italic and bold-italic styles. You can use them in the configuration object. For example:
+
+```js
+const config = {
+    // ....
+		style: {
+			font: "Helvetica", // "Helvetica", "Times", "Courier"
+			fontSize: 10, // Optional. Default is 10.
+			lineHeight: 1.8, // Optional. Default is 1.8.
+			color: "#000000", // Optional. Default is black.
+	},
+};
+```
+Any font can be used with the `font` option by passing the fonts `TTF` files path. For example:
+
+```js
+const config = {
+		// ....
+		font: {
+			Noto: {
+				normal: path.join(__dirname, "fonts/noto/regular.ttf"),
+				italics: path.join(__dirname, "fonts/noto/italic.ttf"),
+				bold: path.join(__dirname, "fonts/noto/bold.ttf"),
+				bolditalics: path.join(__dirname, "fonts/noto/bold-italic.ttf"),
+			},
+		},
+		style: {
+			font: "Noto",
+			fontSize: 10, // Optional. Default is 10.
+			lineHeight: 1.8, // Optional. Default is 1.8.
+			color: "#000000", // Optional. Default is black.
+	},
+};
+```
+If you need additional information do check the [example](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/development/examples/example.ts). In the example, I have used "Noto" and the `TTF` files of Noto font are included in the `fonts` directory. If you have non-latin characters, then you can use any custom font that supports the characters.
 
 ## Types
 
 This library is written in TypeScript. If you need to import the types, then you can import them from `global.d.ts` file. Refer to [Global types](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/stable/global.d.ts) file for more information.
 
-Import example:
+Example:
 
 ```js
 import type { CompanyInfo, CustomerInfo, InvoiceInfo, ItemInfo, QRInfo, InvoicePayLoad } from '@h1dd3nsn1p3r/pdf-invoice/global.d.ts';
@@ -329,9 +375,3 @@ Refer to [releases](https://github.com/h1dd3nsn1p3r/pdf-invoice/releases) sectio
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## Todo
-
-- [ ] Add design/style options.
-- [ ] Add configuration options - (Strings, Fonts, Styles, etc.)
-- [ ] Add support for multi-language.

@@ -2,6 +2,7 @@ examples
 src
 .github
 .gitignore
+.editorconfig
 pnpm-lock.yaml
 tsconfig.json
 tsup.config.ts

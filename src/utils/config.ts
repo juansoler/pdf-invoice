@@ -20,14 +20,6 @@ const defaultConfig = {
 		subTotal: "Subtotal",
 		totalTax: "Total Tax",
 	},
-	font: {
-		helvetica: {
-			normal: "Helvetica",
-			bold: "Helvetica-Bold",
-			italics: "Helvetica-Oblique",
-			bolditalics: "Helvetica-BoldOblique",
-		},
-	},
 };
 
 module.exports = defaultConfig;
