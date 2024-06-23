@@ -314,8 +314,6 @@ const create = async(): Promise<void> => {
 
 ### Fonts
 
-For now only `latin` characters are supported. It seems like a limitation of `Helvetica` font. I'll be adding support for other languages soon.
-
 Following are the fonts that are available build-in with the library:
 
 - Helvetica
