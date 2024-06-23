@@ -1,6 +1,6 @@
-/**
- * Invoice payload types.
- */
+/* --------------------------------------------------------------------------
+	Invoice payload types.
+  -------------------------------------------------------------------------- */
 export interface CompanyInfo {
 	logo?: string;
 	name?: string;
@@ -53,9 +53,9 @@ export interface InvoicePayLoad {
 	note: Notes;
 }
 
-/**
- * Invoice configuration types.
- */
+/* --------------------------------------------------------------------------
+	Invoice configuration types.
+  -------------------------------------------------------------------------- */
 export interface ConfigMeta {
 	title?: string;
 	author?: string;
