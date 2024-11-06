@@ -2,6 +2,13 @@ Forked from https://github.com/h1dd3nsn1p3r/pdf-invoice
 
 ![PDF Invoice](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/development/examples/hero.png)
 
+## Things to do:
+
+- [ ] Crear la clase upload() para subir directamente el documento PDF a servicio S3.
+
+
+
+
 📑 Biblioteca JavaScript sencilla pero potente que genera facturas, presupuestos y recibos de pago en formato PDF a partir de datos JSON. Se puede utilizar en cualquier entorno Node JS/Bun JS.
 
 ## Instalación
@@ -29,13 +36,13 @@ pnpm add @h1dd3nsn1p3r/pdf-invoice
 Una vez instalado, puedes importarlo usando `require` or `import`:
 
 ```js
-const { PDFInvoice } = require('@h1dd3nsn1p3r/pdf-invoice');
+const { PDFInvoice } = require('pdf-invoice-spanish');
 ```
 
 or ES6 import:
 
 ```js
-import { PDFInvoice } from '@h1dd3nsn1p3r/pdf-invoice';
+import { PDFInvoice } from 'pdf-invoice-spanish';
 ```
 
 `PDFInvoice` es una clase que toma la carga útil como argumento. La carga útil son los datos que desea mostrar en la factura. Para obtener más información, consulte el ejemplo [Datos de la carga útil](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/stable/examples/example.ts).
