@@ -1,7 +1,7 @@
 {
-	"name": "@h1dd3nsn1p3r/pdf-invoice",
+	"name": "juansoler/pdf-invoice",
 	"version": "1.0.8",
-	"author": "h1dd3nsn1p3r",
+	"author": "juansoler",
 	"description": "Simple yet powerful node JS library that generates PDF invoice on the fly.",
 	"license": "MIT",
 	"main": "./dist/index.js",
@@ -14,9 +14,9 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:h1dd3nsn1p3r/pdf-invoice.git"
+		"url": "git@github.com:juansoler/pdf-invoice.git"
 	},
-	"homepage": "https://github.com/h1dd3nsn1p3r/pdf-invoice",
+	"homepage": "https://github.com/juansoler/pdf-invoice",
 	"keywords": [
 		"pdf",
 		"invoice",
