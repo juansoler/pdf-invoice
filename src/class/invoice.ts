@@ -302,12 +302,12 @@ export class PDFInvoice {
 			});
 		} else {
 			sectionCompany.columns[1].stack.unshift({
-				text: this.config.string.invoice || "I N V O I C E",
+				text: this.config.string.invoice || "F A C T U R A",
 				style: "h1",
 			});
 		}
 
-		const refLabel = this.config.string.refNumber || "Ref no:";
+		const refLabel = this.config.string.refNumber || "Facturado a:";
 
 		sectionCompany.columns[1].stack.push({
 			text: refLabel + ": #" + (this.invoice.number || 1),
@@ -331,7 +331,7 @@ export class PDFInvoice {
 		const statusLabel = this.config.string.status;
 
 		sectionCompany.columns[1].stack.push({
-			text: statusLabel + ": " + (this.invoice.status || "Pending!"),
+			text: statusLabel + ": " + (this.invoice.status || "Pendiente"),
 			style: "textBold",
 		});
 
