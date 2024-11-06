@@ -1,5 +1,5 @@
 {
-	"name": "juansoler/pdf-invoice",
+	"name": "@juansoler/pdf-invoice",
 	"version": "1.0.8",
 	"author": "juansoler",
 	"description": "Simple yet powerful node JS library that generates PDF invoice on the fly.",
