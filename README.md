@@ -1,8 +1,8 @@
-![PDF Invoice](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/development/examples/hero.png)
+Forked from ![PDF Invoice](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/development/examples/hero.png)
 
-📑 Simple yet powerful JavaScript library that generates PDF invoice, estimates & payment receipts from a JSON data. It can be used in any Node JS/Bun JS environment. 
+📑 Biblioteca JavaScript sencilla pero potente que genera facturas, presupuestos y recibos de pago en formato PDF a partir de datos JSON. Se puede utilizar en cualquier entorno Node JS/Bun JS.
 
-## Installation
+## Instalación
 
 via npm:
 
@@ -24,7 +24,7 @@ pnpm add @h1dd3nsn1p3r/pdf-invoice
 
 ## Use
 
-Once installed, you can import either using `require` or `import`:
+Una vez instalado, puedes importarlo usando `require` or `import`:
 
 ```js
 const { PDFInvoice } = require('@h1dd3nsn1p3r/pdf-invoice');
@@ -36,11 +36,11 @@ or ES6 import:
 import { PDFInvoice } from '@h1dd3nsn1p3r/pdf-invoice';
 ```
 
-`PDFInvoice` is a class that takes the payload as an argument. The payload is the data that you want to show on the invoice. For more information check the [Payload data](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/stable/examples/example.ts) example. 
+`PDFInvoice` es una clase que toma la carga útil como argumento. La carga útil son los datos que desea mostrar en la factura. Para obtener más información, consulte el ejemplo [Datos de la carga útil](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/stable/examples/example.ts).
 
 ## Payload Data
 
-The payload is the data that you want to show on the invoice. It is an object with the following structure:
+La estructura del Payload para los datos que desea mostrar en la factura. Es un objeto con la siguiente estructura:
 
 ```js
 const payload = {
@@ -100,7 +100,7 @@ const payload = {
 };
 ```
 
-**Note:** If the string is long, then you can use `\n` to break the line. For example:
+**Nota:** Si la cadena es larga, puedes usar `\n` para dividir la línea. Por ejemplo:
 
 ```js
 const payload = {
@@ -113,11 +113,11 @@ const payload = {
 };
 ```
 
-Let's understand each of the fields in the payload.
+Entendamos cada uno de los campos de la carga útil.
 
 ### Company
 
-This is the information about your company. It is an object with the following structure:
+Esta es la información sobre su empresa. Es un objeto con la siguiente estructura:
 
 ```js
 const company = {
