@@ -6,19 +6,19 @@
  */
 const defaultConfig = {
 	string: {
-		invoice: "I N V O I C E",
-		refNumber: "Ref no",
-		date: "Date",
-		dueDate: "Due Date",
-		status: "Status",
-		billTo: "Bill To",
-		item: "Item",
-		quantity: "Qty",
-		price: "Price",
-		tax: "Tax",
+		invoice: "F A C T U R A",
+		refNumber: "Nº Factura",
+		date: "Fecha",
+		dueDate: "Fecha factura",
+		status: "Estado",
+		billTo: "Facturado a",
+		item: "Producto",
+		quantity: "Cantidad",
+		price: "Precio",
+		tax: "IVA",
 		total: "Total",
 		subTotal: "Subtotal",
-		totalTax: "Total Tax",
+		totalTax: "Total IVA",
 	},
 };
 
