@@ -1,4 +1,6 @@
-Forked from ![PDF Invoice](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/development/examples/hero.png)
+Forked from https://github.com/h1dd3nsn1p3r/pdf-invoice
+
+![PDF Invoice](https://github.com/h1dd3nsn1p3r/pdf-invoice/blob/development/examples/hero.png)
 
 📑 Biblioteca JavaScript sencilla pero potente que genera facturas, presupuestos y recibos de pago en formato PDF a partir de datos JSON. Se puede utilizar en cualquier entorno Node JS/Bun JS.
 
