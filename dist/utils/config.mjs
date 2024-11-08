@@ -1,5 +1,2 @@
-var o=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports);var i=o((T,a)=>{var l={string:{invoice:"I N V O I C E",refNumber:"Ref no",date:"Date",dueDate:"Due Date",status:"Status",billTo:"Bill To",item:"Item",quantity:"Qty",price:"Price",tax:"Tax",total:"Total",subTotal:"Subtotal",totalTax:"Total Tax"}};a.exports=l;});var config = i();
-
-export { config as default };
-//# sourceMappingURL=out.js.map
+var e=(o,t)=>()=>(t||o((t={exports:{}}).exports,t),t.exports);var c=e((r,a)=>{var u={string:{invoice:"F A C T U R A",refNumber:"N\xBA Factura",date:"Fecha",dueDate:"Fecha factura",status:"Estado",billTo:"Facturado a",item:"Producto",quantity:"Cantidad",price:"Precio",tax:"IVA",total:"Total",subTotal:"Subtotal",totalTax:"Total IVA"}};a.exports=u;});var config = c();export{config as default};//# sourceMappingURL=config.mjs.map
 //# sourceMappingURL=config.mjs.map

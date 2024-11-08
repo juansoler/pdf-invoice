@@ -1,6 +1,6 @@
 {
 	"name": "pdf-invoice-spanish",
-	"version": "1.0.0",
+	"version": "1.0.9",
 	"author": "juansoler",
 	"description": "Simple yet powerful node JS library that generates PDF invoice on the fly.",
 	"license": "MIT",
